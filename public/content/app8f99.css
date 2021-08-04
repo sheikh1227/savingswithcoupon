@@ -1,0 +1,97 @@
+﻿body {
+    font-family: Poppins,Arial,sans-serif;
+}
+
+.cursorwait {
+    cursor: wait;
+}
+
+.cursornotallowed {
+    cursor: wait;
+}
+
+bigicon
+{
+    font-size: 2rem;
+}
+.productCard {
+    opacity: 0.9;
+}
+
+.productCard:hover {
+    transform: scale(1.01);
+    opacity: 1;
+    transition-duration: 0.1s;
+}
+
+.btn-buy {
+    text-transform: uppercase;
+    background-color: #009030;
+    transition: background 0.3s ease-in-out;
+    font-size: 1rem;
+    font-weight: 600;
+    color: white;
+    border-radius: 0;
+    padding: 0.75rem 1.25rem;
+    letter-spacing: 1px;
+}
+
+    .btn-buy:hover {
+        color: white;
+        background-color: #B00000;
+    }
+
+
+ .itemName {
+     font-weight: bold;
+     font-size: 18px;
+     color: #404040;
+ }
+
+.originalPrice {
+    color: #808080;
+    text-decoration: line-through;
+}
+
+.price {
+    font-size: larger;
+    font-weight: bold;
+    color: #ff0000;
+}
+
+.text-large {
+    font-size: 125%;
+}
+
+.restrictions {
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.highlight-marker {
+    background-color:#f7ff00;
+}
+.mainArea {
+    margin-left: 0em;
+    padding-top: 1em;
+    padding-left: 0em;
+}
+
+.footer {
+    margin-top: 0em;
+    margin-bottom: .4em;
+}
+
+@media only screen and (max-width: 768px) {
+    .topLineNav {
+        margin-left: 5em;
+    }
+}
+
+.accordion .fa {
+    margin-right: 0.5rem;
+    font-size: 2rem;
+    font-weight: bold;
+    position: relative;
+    top: 2px;
+}
