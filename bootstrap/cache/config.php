@@ -1,16 +1,16 @@
 <?php return array (
   'app' => 
   array (
-    'name' => 'Laravel',
+    'name' => 'Saving With Coupon',
     'env' => 'local',
     'debug' => true,
-    'url' => 'http://savingWithCoupon.test',
+    'url' => 'http://localhost',
     'asset_url' => NULL,
     'timezone' => 'UTC',
     'locale' => 'en',
     'fallback_locale' => 'en',
     'faker_locale' => 'en_US',
-    'key' => 'base64:i+3Cdd5Gj0Or9VedaoTEo+aYRx5iJQXa/cNu9GtJ028=',
+    'key' => 'base64:DS2f5+bXTkMy95eDvFB/NovH+tTRSsgLpcVoMoyAizU=',
     'cipher' => 'AES-256-CBC',
     'providers' => 
     array (
@@ -183,7 +183,7 @@
       'file' => 
       array (
         'driver' => 'file',
-        'path' => 'C:\\xampp\\htdocs\\savingWithCoupon\\storage\\framework/cache/data',
+        'path' => '/var/www/danish/savingswithcoupon/storage/framework/cache/data',
       ),
       'memcached' => 
       array (
@@ -227,7 +227,7 @@
         'driver' => 'octane',
       ),
     ),
-    'prefix' => 'laravel_cache',
+    'prefix' => 'saving_with_coupon_cache',
   ),
   'cors' => 
   array (
@@ -266,7 +266,7 @@
       array (
         'driver' => 'sqlite',
         'url' => NULL,
-        'database' => 'savingwithcoupen',
+        'database' => 'savingwithcoupons',
         'prefix' => '',
         'foreign_key_constraints' => true,
       ),
@@ -276,9 +276,9 @@
         'url' => NULL,
         'host' => '127.0.0.1',
         'port' => '3306',
-        'database' => 'savingwithcoupen',
+        'database' => 'savingwithcoupons',
         'username' => 'root',
-        'password' => '',
+        'password' => '123123123',
         'unix_socket' => '',
         'charset' => 'utf8mb4',
         'collation' => 'utf8mb4_unicode_ci',
@@ -296,9 +296,9 @@
         'url' => NULL,
         'host' => '127.0.0.1',
         'port' => '3306',
-        'database' => 'savingwithcoupen',
+        'database' => 'savingwithcoupons',
         'username' => 'root',
-        'password' => '',
+        'password' => '123123123',
         'charset' => 'utf8',
         'prefix' => '',
         'prefix_indexes' => true,
@@ -311,9 +311,9 @@
         'url' => NULL,
         'host' => '127.0.0.1',
         'port' => '3306',
-        'database' => 'savingwithcoupen',
+        'database' => 'savingwithcoupons',
         'username' => 'root',
-        'password' => '',
+        'password' => '123123123',
         'charset' => 'utf8',
         'prefix' => '',
         'prefix_indexes' => true,
@@ -326,7 +326,7 @@
       'options' => 
       array (
         'cluster' => 'redis',
-        'prefix' => 'laravel_database_',
+        'prefix' => 'saving_with_coupon_database_',
       ),
       'default' => 
       array (
@@ -354,13 +354,13 @@
       'local' => 
       array (
         'driver' => 'local',
-        'root' => 'C:\\xampp\\htdocs\\savingWithCoupon\\storage\\app',
+        'root' => '/var/www/danish/savingswithcoupon/storage/app',
       ),
       'public' => 
       array (
         'driver' => 'local',
-        'root' => 'C:\\xampp\\htdocs\\savingWithCoupon\\storage\\app/public',
-        'url' => 'http://savingWithCoupon.test/storage',
+        'root' => '/var/www/danish/savingswithcoupon/storage/app/public',
+        'url' => 'http://localhost/storage',
         'visibility' => 'public',
       ),
       's3' => 
@@ -377,7 +377,7 @@
     ),
     'links' => 
     array (
-      'C:\\xampp\\htdocs\\savingWithCoupon\\public\\images' => 'C:\\xampp\\htdocs\\savingWithCoupon\\storage\\app/images',
+      '/var/www/danish/savingswithcoupon/public/images' => '/var/www/danish/savingswithcoupon/storage/app/images',
     ),
   ),
   'hashing' => 
@@ -411,13 +411,13 @@
       'single' => 
       array (
         'driver' => 'single',
-        'path' => 'C:\\xampp\\htdocs\\savingWithCoupon\\storage\\logs/laravel.log',
+        'path' => '/var/www/danish/savingswithcoupon/storage/logs/laravel.log',
         'level' => 'debug',
       ),
       'daily' => 
       array (
         'driver' => 'daily',
-        'path' => 'C:\\xampp\\htdocs\\savingWithCoupon\\storage\\logs/laravel.log',
+        'path' => '/var/www/danish/savingswithcoupon/storage/logs/laravel.log',
         'level' => 'debug',
         'days' => 14,
       ),
@@ -468,7 +468,7 @@
       ),
       'emergency' => 
       array (
-        'path' => 'C:\\xampp\\htdocs\\savingWithCoupon\\storage\\logs/laravel.log',
+        'path' => '/var/www/danish/savingswithcoupon/storage/logs/laravel.log',
       ),
     ),
   ),
@@ -518,15 +518,28 @@
     'from' => 
     array (
       'address' => NULL,
-      'name' => 'Laravel',
+      'name' => 'Saving With Coupon',
     ),
     'markdown' => 
     array (
       'theme' => 'default',
       'paths' => 
       array (
-        0 => 'C:\\xampp\\htdocs\\savingWithCoupon\\resources\\views/vendor/mail',
+        0 => '/var/www/danish/savingswithcoupon/resources/views/vendor/mail',
       ),
+    ),
+  ),
+  'paypal' => 
+  array (
+    'client_id' => 'AT4W3CmPArAnmN3TZZfTUIgXJLUY2_vnOUWnUIiZeLywE2Tp93vEj9mhinzmOD-Mmfg4NlinkE6V0YpV',
+    'secret' => 'EC3psNBoiX_WM-Abebgo523sFKfEpl3tnsuIu0BD6E_gpMA3AEXOIP3ntuOup7dioIxPyDkIzIRMNJ9G',
+    'settings' => 
+    array (
+      'mode' => 'sandbox',
+      'http.ConnectionTimeOut' => 1000,
+      'log.LogEnabled' => true,
+      'log.FileName' => '/var/www/danish/savingswithcoupon/storage/logs/paypal.log',
+      'log.LogLevel' => 'FINE',
     ),
   ),
   'queue' => 
@@ -608,7 +621,7 @@
     'lifetime' => '120',
     'expire_on_close' => false,
     'encrypt' => false,
-    'files' => 'C:\\xampp\\htdocs\\savingWithCoupon\\storage\\framework/sessions',
+    'files' => '/var/www/danish/savingswithcoupon/storage/framework/sessions',
     'connection' => NULL,
     'table' => 'sessions',
     'store' => NULL,
@@ -617,7 +630,7 @@
       0 => 2,
       1 => 100,
     ),
-    'cookie' => 'laravel_session',
+    'cookie' => 'saving_with_coupon_session',
     'path' => '/',
     'domain' => NULL,
     'secure' => NULL,
@@ -628,9 +641,9 @@
   array (
     'paths' => 
     array (
-      0 => 'C:\\xampp\\htdocs\\savingWithCoupon\\resources\\views',
+      0 => '/var/www/danish/savingswithcoupon/resources/views',
     ),
-    'compiled' => 'C:\\xampp\\htdocs\\savingWithCoupon\\storage\\framework\\views',
+    'compiled' => '/var/www/danish/savingswithcoupon/storage/framework/views',
   ),
   'flare' => 
   array (
