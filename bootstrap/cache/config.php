@@ -480,11 +480,11 @@
       'smtp' => 
       array (
         'transport' => 'smtp',
-        'host' => 'mailhog',
-        'port' => '1025',
-        'encryption' => NULL,
-        'username' => NULL,
-        'password' => NULL,
+        'host' => 'smtp.mailtrap.io',
+        'port' => '2525',
+        'encryption' => 'tls',
+        'username' => 'e73cf9ca2b8d85',
+        'password' => '2a77f522d0cf4a',
         'timeout' => NULL,
         'auth_mode' => NULL,
       ),
@@ -517,7 +517,7 @@
     ),
     'from' => 
     array (
-      'address' => NULL,
+      'address' => 'mujeeb@test.com',
       'name' => 'Saving With Coupon',
     ),
     'markdown' => 

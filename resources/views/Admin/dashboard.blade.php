@@ -128,19 +128,50 @@ function __doPostBack(eventTarget, eventArgument) {
                                 <ul class="list-group list-group-flush">
                                     <li class="list-group-item">
                                         <div class="dropdown show dropup">
-                                            <button class="btn btn-buy dropdown-toggle rounded" id="btnBuyDropdown" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Buy Now!</button>
+                                            <button class="btn btn-buy dropdown-toggle rounded" id="btnBuyDropdown"
+                                                type="button" data-toggle="dropdown" aria-haspopup="true"
+                                                aria-expanded="false">Buy Now!</button>
                                             <div class="dropdown-menu" aria-labelledby="btnBuyDropdown">
-                                                <a id="MainContent_rpCoupons_lnkBuy1_0" class="dropdown-item" href="javascript:__doPostBack(&#39;ctl00$MainContent$rpCoupons$ctl00$lnkBuy1&#39;,&#39;&#39;)">Buy <b>1x</b> ($3.85)</a>
-                                                
-                                                
-                                                
-                                                
+                                              
+                                                <form class="form-horizontal" method="POST" id="payment-form"
+                                                    role="form" action="{{ route('paypal') }}">
+                                                    {{ csrf_field() }}
+                                                    <input type="hidden" value="{{ $mo->id }}" name="product">
+
+
+                                                    <div class="form-group">
+                                                        <div class="col-md-6 col-md-offset-4 dropdown-item">
+                                                            <button value="1" name="button" type="submit" class="btn btn-primary">
+                                                                Buy
+                                                                <b>1x</b> ($
+                                                                {{ !empty($mo->Dprice) ? $mo->Dprice : $mo->Oprice }})
+                                                            </button>
+                                                        </div>
+                                                        <div class="col-md-6 col-md-offset-4 dropdown-item">
+                                                            <button value="3" name="button" type="submit" class="btn btn-primary">
+                                                                Buy
+                                                                <b>3x</b> ($
+                                                                {{ !empty($mo->Dprice) ? 3 * $mo->Dprice : 3 * $mo->Oprice }})
+                                                            </button>
+                                                        </div>
+                                                        <div class="col-md-6 col-md-offset-4 dropdown-item">
+                                                            <button value="5" name="button" type="submit" class="btn btn-primary">
+                                                                Buy
+
+                                                                <b>5x</b> ($
+                                                                {{ !empty($mo->Dprice) ? 5 * $mo->Dprice : 5 * $mo->Oprice }})
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                        
+
                                             </div>
                                         </div>
                                     </li>
                                     <li class="list-group-item">
                                         <b>PRICE:</b>
-                                        <span class="originalPrice">{{ $mo->Oprice }}<br></span>
+                                        <span class="{{ !empty($mo->Dprice) ? 'originalPrice' : '' }}">{{ $mo->Oprice }}<br></span>
                                         <span class="price">{{ $mo->Dprice }}</span>
                                     </li>
                                 </ul>
@@ -158,25 +189,7 @@ function __doPostBack(eventTarget, eventArgument) {
                         <div class="col-md-6 ">
                             <a href="update/{{ $mo->id }}" class="btn btn-primary">Update</a>
                         </div>
-                        <form method="POST" action="/delete/{{ $mo->id }}">
-                            @csrf
-                            @method('DELETE')
-                            <div class="row">
-                            <div class="col-lg-12 ">
-                       
-                        <div class="form-group" >
-                            <div class="col-md-12 text-center" >
-                                <button class="btn bg-primary"  type="submit">Delete</button>
-                            </div>
-                            
-                        </div>
-                        
-
-                        
-                            </div>
-                            </div>
-                    
-                    </form>
+                      
                         </div>
                         
                     </div>

@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
-Auth::routes();
+Auth::routes(['verify'=>true]);
 
 
 
@@ -31,15 +31,16 @@ Route::get('update/{id}',[AdminController::class,'update']);
 Route::put('update/co/{para}',[AdminController::class,'updatedata']);
 Route::delete('delete/{para}',[AdminController::class,'deletedata']);
 
-Route::get('home',[HomeController::class,'index']);
-Route::get('contact',[HomeController::class,'contact']);
+
+Route::get('home',[HomeController::class,'index'])->middleware('verified');
+Route::get('contact',[HomeController::class,'contact'])->middleware('verified');
 Route::get('/',[HomeController::class,'home'])->name('home');
 
 
 
 
-Route::post('paypal', [PaypalController::class,'postPaymentWithpaypal'])->name('paypal');
-Route::get('paypal',[PaypalController::class,'getPaymentStatus'])->name('status');
+Route::post('paypal', [PaypalController::class,'postPaymentWithpaypal'])->name('paypal')->middleware('verified');
+Route::get('paypal',[PaypalController::class,'getPaymentStatus'])->name('status')->middleware('verified');
 
 
 // Route::get('/', function()
