@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\homeform;
+use App\Models\ProductCoupon;
 use App\Notifications\CouponNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -50,6 +51,8 @@ class PaypalController extends Controller
             $values =[1,3,5];
     
             $item = homeform::findOrFail($request->product);
+
+
     
             if(in_array($quantity,$values))
             {
@@ -115,6 +118,9 @@ class PaypalController extends Controller
                 }
         
                 Session::put('paypal_payment_id', $payment->getId());
+                Session::put('item',  $item);
+                Session::put('quantity',  $quantity);
+
         
                 if (isset($redirect_url)) {
         
@@ -138,6 +144,9 @@ class PaypalController extends Controller
     {
         $payment_id = Session::get('paypal_payment_id');
 
+        $item = Session::get('item');
+
+        $quantity =  Session::get('quantity');
         Session::forget('paypal_payment_id');
         if (empty($request->input('PayerID')) || empty($request->input('token'))) {
             Session::put('error', 'Payment Failed Please Try Again ');
@@ -151,8 +160,18 @@ class PaypalController extends Controller
      
         if ($result->getState() == 'approved') {
             Session::put('success', 'Payment success !!');
-            Notification::route('mail', Auth::user()->email)
-            ->notify((new CouponNotification()));
+            
+            $coupons = ProductCoupon::where('product_id',$item->id)
+            ->take($quantity)
+            ->get();
+
+
+                    
+           $notificationSend = Notification::route('mail', Auth::user()->email)
+            ->notify((new CouponNotification($coupons)));
+            ProductCoupon::whereIn('id',$coupons->pluck('id')->toArray())
+            ->delete();
+            
             return redirect()->route('home');
         }
 

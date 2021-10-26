@@ -3,6 +3,10 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PaypalController;
+use App\Models\ProductCoupon;
+use App\Notifications\CouponNotification;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -42,6 +46,27 @@ Route::get('/',[HomeController::class,'home'])->name('home');
 Route::post('paypal', [PaypalController::class,'postPaymentWithpaypal'])->name('paypal')->middleware('verified');
 Route::get('paypal',[PaypalController::class,'getPaymentStatus'])->name('status')->middleware('verified');
 
+Route::get('test',function(){
+    $coupons = ProductCoupon::with('product')
+    ->where('product_id',124)
+    ->take(3)
+    ->get();
+
+
+    
+   
+
+   $notificationSend = Notification::route('mail', Auth::user()->email)
+    ->notify((new CouponNotification($coupons)));
+    ProductCoupon::whereIn('id',$coupons->pluck('id')->toArray())
+    ->delete();
+    return redirect()->route('home');
+
+
+
+
+
+});
 
 // Route::get('/', function()
 //  {

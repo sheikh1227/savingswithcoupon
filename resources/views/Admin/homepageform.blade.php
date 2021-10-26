@@ -70,6 +70,12 @@
                                     </div>
                                     <div class="col-sm-5 col-lg-8">
                                         <div class="form-group">
+                                            <label for="csvfile">Add Product File</label><br>
+                                            <input name="csvfile" type="file" maxlength="30" id="MainContent_txtLastName"   required="true" />
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-5 col-lg-8">
+                                        <div class="form-group">
                                             <label for="txtOrgprice">Orignal price title</label>
                                             <input name="txtOrgprice" type="text" maxlength="30" id="MainContent_txtLastName" class="form-control" placeholder="Enter Orignal price title" minlength="1" required="true" />
                                         </div>

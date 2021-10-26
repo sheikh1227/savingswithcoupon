@@ -16,9 +16,12 @@ class CouponNotification extends Notification
      *
      * @return void
      */
-    public function __construct()
+
+     public $coupons;
+    public function __construct($coupons)
     {
         //
+        $this->coupons = $coupons;
     }
 
     /**
@@ -40,11 +43,23 @@ class CouponNotification extends Notification
      */
     public function toMail($notifiable)
     {
-        return (new MailMessage)
+        $email =  (new MailMessage)
             ->subject('Coupon Confirmation')
             ->from(config('mail.from.address'),config('mail.from.name'))
             ->replyTo('hello@cartlow.com',config('mail.from.name'))
-            ->view('users.coupon',with(['orders'=>12]));
+            ->view('users.coupon',with([
+                'coupons'=>$this->coupons
+            ]));
+            foreach($this->coupons  as $coupon)
+            {
+                if(!empty($coupon->image))
+                {
+                    $image = public_path('file').'/'.$coupon->image;
+                }
+                $email = $email->attach($image);
+
+            }
+            return $email;
                    
     }
 
